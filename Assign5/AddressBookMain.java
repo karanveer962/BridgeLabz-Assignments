@@ -1,6 +1,6 @@
 package Assign5;
 
-import java.util.Scanner;
+import java.util.*;
 
 
 class Person{
@@ -17,11 +17,24 @@ class Person{
      this.email=email;
    }
 }
+class ContactBook{
+    private List<Person> contacts;
+    
+    public ContactBook(){
+        this.contacts = new ArrayList<>();
+    }
+    public void addContact(Person person) {
+        contacts.add(person);
+    }
+}
+
 public class AddressBookMain {
     public static void main(String[] args){
 
         Scanner sc=new Scanner(System.in);
         System.out.println("Welcome to Address Book program  in AddressBookMain class on Master Branch");
-        
+        Person person1=new Person("Karanveer","Singh","address","city","state","zip","phnum","email");
+        ContactBook cb=new ContactBook();
+        cb.addContact(person1);
     }
 }
