@@ -29,6 +29,20 @@ public class MaxFinder {
 
         return max;
     }
+    public static String findMaximum(String x, String y, String z) {
+        String max = x;
+
+        if (y.compareTo(max) > 0) {
+            max = y;
+        }
+
+        if (z.compareTo(max) > 0) {
+            max = z;
+        }
+
+        return max;
+    }
+
 
     public static void main(String[] args) {
         
@@ -57,5 +71,19 @@ public class MaxFinder {
      
         Float res3 = findMaximum(2.3f, 6.7f, 9.0f);
         System.out.println("Test Case 3 - Max: " + res3);
+
+        //----------------------------------------------------------------//
+
+        System.out.println("String Values: ");
+        String re1 = findMaximum("Apple", "Peach", "Banana");
+        System.out.println("Test Case 1 - Max: " + re1);
+
+        // Test Case 2: Max at 2nd position
+        String re2 = findMaximum("karan", "rajat", "priyanshu");
+        System.out.println("Test Case 2 - Max: " + re2);
+
+        // Test Case 3: Max at 3rd position
+        String re3 = findMaximum("simon", "go", "back");
+        System.out.println("Test Case 3 - Max: " + re3);
     }
 }
