@@ -62,7 +62,9 @@ public class LinkedList<T> {
         }
     }
 
-    public void popLast() {
+    public T popLast() {
+        T var=(head.next==null)?head.data:null;
+
         if (head == null || head.next == null) {
             head = null;
         } else {
@@ -70,8 +72,10 @@ public class LinkedList<T> {
             while (current.next.next != null) {
                 current = current.next;
             }
+            var=current.next.data;
             current.next = null;
         }
+        return var;
     }
 
     public Node<T> search(T key) {

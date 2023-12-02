@@ -12,26 +12,27 @@ class Stack<T> {
     }
 
     public T peek() {
-        return list.getHead().data;
+        T top = this.pop();
+        list.append(top);
+        return top;
     }
 
     public T pop() {
-        if(list.getHead()==null){
-            throw new IllegalArgumentException("Stack is alread Empty");
+        if (list.getHead() == null) {
+            throw new IllegalArgumentException("Stack is already Empty");
         }
-            T var=list.getHead().data;
-            list.pop();
-            return var;
+        return list.popLast();
     }
 
     public boolean isEmpty() {
-        return list.size()==0;
+        return list.size() == 0;
     }
 
-    public int size(){
+    public int size() {
         return list.size();
     }
-    public void display(){
+
+    public void display() {
         System.out.print("Stack: ");
         list.display();
     }
@@ -39,13 +40,12 @@ class Stack<T> {
     public static void main(String[] args) {
         Stack<Integer> stack = new Stack<>();
 
-        
         stack.push(56);
         stack.push(30);
         stack.push(70);
-         
+
         stack.display();
-        
+
         while (!stack.isEmpty()) {
             System.out.println("Peek: " + stack.peek());
             System.out.println("Pop: " + stack.pop());
