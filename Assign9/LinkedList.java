@@ -1,6 +1,6 @@
 public class LinkedList<T> {
 
-    private static class Node<T> {
+    public static class Node<T> {
         T data;
         Node<T> next;
 
@@ -114,6 +114,10 @@ public class LinkedList<T> {
         }
     }
 
+    public Node<T> getHead(){
+        return this.head;
+    }
+
     public int size() {
         int count = 0;
         Node<T> current = head;
@@ -129,7 +133,7 @@ public class LinkedList<T> {
         while (current != null) {
             System.out.print(current.data);
             if (current.next != null) {
-                System.out.print("->");
+                System.out.print(" ");
             }
             current = current.next;
         }
