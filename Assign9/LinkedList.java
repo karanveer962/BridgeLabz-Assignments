@@ -1,6 +1,6 @@
 public class LinkedList<T> {
 
-    private static class Node<T> {
+    public static class Node<T> {
         T data;
         Node<T> next;
 
@@ -52,13 +52,19 @@ public class LinkedList<T> {
         }
     }
 
+    public Node<T> getHead(){
+         return this.head;
+    }
+
     public void pop() {
         if (head != null) {
             head = head.next;
         }
     }
 
-    public void popLast() {
+    public T popLast() {
+        T var=(head.next==null)?head.data:null;
+
         if (head == null || head.next == null) {
             head = null;
         } else {
@@ -66,8 +72,10 @@ public class LinkedList<T> {
             while (current.next.next != null) {
                 current = current.next;
             }
+            var=current.next.data;
             current.next = null;
         }
+        return var;
     }
 
     public Node<T> search(T key) {
@@ -129,7 +137,7 @@ public class LinkedList<T> {
         while (current != null) {
             System.out.print(current.data);
             if (current.next != null) {
-                System.out.print("->");
+                System.out.print(" ");
             }
             current = current.next;
         }
