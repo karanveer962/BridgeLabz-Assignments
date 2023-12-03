@@ -122,6 +122,10 @@ public class LinkedList<T> {
         }
     }
 
+    public Node<T> getHead(){
+        return this.head;
+    }
+
     public int size() {
         int count = 0;
         Node<T> current = head;
