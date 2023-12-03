@@ -60,7 +60,6 @@ public class LinkedList<T> {
 
     public void popLast() {
         if (head == null || head.next == null) {
-            // If the list is empty or has only one element, set head to null
             head = null;
         } else {
             Node<T> current = head;
@@ -92,6 +91,37 @@ public class LinkedList<T> {
         } else {
             System.out.println("Node with key " + key + " not found.");
         }
+    }
+
+    public void delete(T key) {
+        Node<T> current = head;
+        Node<T> prev = null;
+
+        while (current != null && !current.data.equals(key)) {
+            prev = current;
+            current = current.next;
+        }
+
+        if (current == null) {
+            return;
+        }
+
+        if (prev == null) {
+            head = current.next;
+        } else {
+            
+            prev.next = current.next;
+        }
+    }
+
+    public int size() {
+        int count = 0;
+        Node<T> current = head;
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
     }
 
     public void display() {
@@ -144,6 +174,11 @@ public class LinkedList<T> {
         System.out.print("Linked List after insertAfter: ");
         linkedList.display();
 
+        linkedList.delete(40);
+        System.out.print("Linked List after deletion: ");
+        linkedList.display();
 
+        System.out.println("Size of linkedlist is: "+linkedList.size());
     }
 }
+
