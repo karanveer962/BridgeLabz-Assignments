@@ -75,7 +75,22 @@ class Person {
         return email;
     }
 }
+ class AddressBookRecords {
+    private Map<String, ContactBook> addressBooks;
 
+    public AddressBookRecords() {
+        this.addressBooks = new HashMap<>();
+    }
+
+    public void addAddressBook(String addressBookName) {
+        ContactBook newAddressBook = new ContactBook();
+        addressBooks.put(addressBookName, newAddressBook);
+    }
+
+    public ContactBook getAddressBook(String addressBookName) {
+        return addressBooks.get(addressBookName);
+    }
+}
 class ContactBook {
     private List<Person> contacts;
     private Map<String, Person> contactsByName;
@@ -99,7 +114,7 @@ class ContactBook {
         Person person = contactsByName.get(firstName);
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter which field to update: ");
+        System.out.println("Enter which field to update for contact "+firstName+": ");
         String fieldToUpdate=sc.nextLine();
         System.out.println("Enter new value for " + fieldToUpdate + ":");
         String newValue = sc.nextLine();
@@ -140,6 +155,13 @@ class ContactBook {
         }
         contacts.remove(contactsByName.get(firstName));
         contactsByName.remove(firstName);
+        System.out.println("Contact deleted Successfully");
+    }
+    public void getAllContacts(){
+        System.out.println("All Contacts: ");
+        for(Person it:contacts){
+            System.out.println(it.getFirstName()+" "+it.getLastName()+" "+it.getPhoneNumber());
+        }
     }
 }
 
@@ -149,10 +171,17 @@ public class AddressBookMain {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to Address Book program  in AddressBookMain class on Master Branch");
-        Person person1 = new Person("Karanveer", "Singh", "address", "city", "state", "zip", "phnum", "email");
-        ContactBook cb = new ContactBook();
+        Person person1 = new Person("Karanveer", "Singh", "address", "city", "state", "zip", "874865845", "email");
+        Person person2 = new Person("Rajat", "Branwal", "address", "city", "state", "zip", "3435974584", "email");
+        Person person3 = new Person("Priyanshu", "Yadav", "address", "city", "state", "zip", "8897453743", "email");
+        AddressBookRecords system = new AddressBookRecords();
+        system.addAddressBook("Friends");
+        ContactBook cb = system.getAddressBook("Friends");
         cb.addContact(person1);
+        cb.addContact(person2);
+        cb.addContact(person3);
         cb.editContact(person1.getFirstName());
-        cb.deleteContact(person1.getFirstName());
+        cb.deleteContact(person2.getFirstName());
+        cb.getAllContacts();
     }
 }
