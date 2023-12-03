@@ -133,6 +133,14 @@ class ContactBook {
 
         System.out.println("Contact edited successfully.");
     }
+    public void deleteContact(String firstName){
+        if(!contactsByName.containsKey(firstName)){
+            System.out.println("Contact with the given first name not found.");
+            return;
+        }
+        contacts.remove(contactsByName.get(firstName));
+        contactsByName.remove(firstName);
+    }
 }
 
 
@@ -145,5 +153,6 @@ public class AddressBookMain {
         ContactBook cb = new ContactBook();
         cb.addContact(person1);
         cb.editContact(person1.getFirstName());
+        cb.deleteContact(person1.getFirstName());
     }
 }
