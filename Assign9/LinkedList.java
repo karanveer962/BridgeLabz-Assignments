@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+
 public class LinkedList<T> {
 
     private static class Node<T> {
@@ -14,7 +15,6 @@ public class LinkedList<T> {
 
     private Node<T> head;
 
-   
     public LinkedList() {
         this.head = null;
     }
@@ -32,6 +32,28 @@ public class LinkedList<T> {
         }
     }
 
+    public void insert(T data, int position) {
+        if (position < 0) {
+            throw new IllegalArgumentException("Invalid position");
+        }
+
+        Node<T> newNode = new Node<>(data);
+
+        if (position == 0) {
+            newNode.next = head;
+            head = newNode;
+        } else {
+            Node<T> current = head;
+            for (int i = 0; i < position - 1; i++) {
+                if (current == null) {
+                    throw new IllegalArgumentException("Invalid position");
+                }
+                current = current.next;
+            }
+            newNode.next = current.next;
+            current.next = newNode;
+        }
+    }
 
     public void display() {
         Node<T> current = head;
@@ -51,7 +73,12 @@ public class LinkedList<T> {
 
         System.out.print(" Linked List: ");
         linkedList.display();
+      
+        linkedList.insert(40, 9);
 
        
+        System.out.print("Linked List after Insertion: ");
+        linkedList.display();
+
     }
 }
