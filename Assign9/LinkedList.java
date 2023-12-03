@@ -1,6 +1,3 @@
-import java.util.*;
-import java.io.*;
-
 public class LinkedList<T> {
 
     private static class Node<T> {
@@ -19,7 +16,7 @@ public class LinkedList<T> {
         this.head = null;
     }
 
-    public void add(T data) {
+    public void append(T data) {
         Node<T> newNode = new Node<>(data);
         if (head == null) {
             head = newNode;
@@ -55,10 +52,55 @@ public class LinkedList<T> {
         }
     }
 
+    public void pop() {
+        if (head != null) {
+            head = head.next;
+        }
+    }
+
+    public void popLast() {
+        if (head == null || head.next == null) {
+            // If the list is empty or has only one element, set head to null
+            head = null;
+        } else {
+            Node<T> current = head;
+            while (current.next.next != null) {
+                current = current.next;
+            }
+            current.next = null;
+        }
+    }
+
+    public Node<T> search(T key) {
+        Node<T> current = head;
+        while (current != null) {
+            if (current.data.equals(key)) {
+                return current; 
+            }
+            current = current.next;
+        }
+        return null;
+    }
+
+    public void insertAfter(T key, T newData) {
+        Node<T> nodeToInsertAfter = search(key);
+
+        if (nodeToInsertAfter != null) {
+            Node<T> newNode = new Node<>(newData);
+            newNode.next = nodeToInsertAfter.next;
+            nodeToInsertAfter.next = newNode;
+        } else {
+            System.out.println("Node with key " + key + " not found.");
+        }
+    }
+
     public void display() {
         Node<T> current = head;
         while (current != null) {
-            System.out.print(current.data + " ");
+            System.out.print(current.data);
+            if (current.next != null) {
+                System.out.print("->");
+            }
             current = current.next;
         }
         System.out.println();
@@ -67,18 +109,41 @@ public class LinkedList<T> {
     public static void main(String[] args) {
         LinkedList<Integer> linkedList = new LinkedList<>();
 
-        linkedList.add(56);
-        linkedList.add(30);
-        linkedList.add(70);
-
-        System.out.print(" Linked List: ");
-        linkedList.display();
-      
-        linkedList.insert(40, 9);
+       
+        linkedList.append(56);
+        linkedList.append(30);
+        linkedList.append(70);
 
        
-        System.out.print("Linked List after Insertion: ");
+        System.out.print("Linked List: ");
         linkedList.display();
+         
+        linkedList.insert(40,2);
+        System.out.print("Linked List after insertion: ");
+        linkedList.display();
+
+        linkedList.pop();
+        System.out.print("Linked List after pop: ");
+        linkedList.display();
+
+        
+        linkedList.popLast();
+        System.out.print("Linked List after popLast: ");
+        linkedList.display();
+       
+
+         Node<Integer> foundNode = linkedList.search(30);
+        if(foundNode!=null){
+            System.out.println("Node 30 present in the list");
+        }
+        else{
+            System.out.println("Node not present in the list");
+        }
+       
+        linkedList.insertAfter(40, 50);
+        System.out.print("Linked List after insertAfter: ");
+        linkedList.display();
+
 
     }
 }
