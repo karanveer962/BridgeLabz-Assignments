@@ -41,7 +41,19 @@ class HashTable{
         }
 
         table[index].add(new MyMapNode(key));
-    }gi
+    }
+    void remove(String key) {
+       
+        int index = hashFunction(key);
+        for (MyMapNode node : table[index]) {
+            if (node.key.equals(key)) {
+                table[index].remove(node);
+                System.out.println("\nNode with given key "+key+" removed");
+                return;
+            }
+        }
+        System.out.println("\nNode with given key "+key+" not found");
+    }
 
     void display() {
         for (int i = 0; i < tableSize; i++) {
@@ -74,6 +86,11 @@ class HashTable{
         for (String word : words2) {
             hashTable2.insert(word);
         }
+        hashTable2.display();
+
+
+        hashTable2.remove("avoidable");
+        System.out.println("\nAfter removal hash table :\n");
         hashTable2.display();
     }
 }
