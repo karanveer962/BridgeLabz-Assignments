@@ -41,12 +41,12 @@ class HashTable{
         }
 
         table[index].add(new MyMapNode(key));
-    }
+    }gi
 
     void display() {
         for (int i = 0; i < tableSize; i++) {
             for (MyMapNode node : table[i]) {
-                System.out.println(i+" "+node.key + ": " + node.value);
+                System.out.println(node.key + ": " + node.value);
             }
         }
     }
@@ -64,5 +64,16 @@ class HashTable{
         }
 
         hashTable.display();
+
+        
+        String sentence2="Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+        System.out.println(sentence2);
+        HashTable hashTable2 = new HashTable();
+
+        String[] words2 = sentence2.split(" ");
+        for (String word : words2) {
+            hashTable2.insert(word);
+        }
+        hashTable2.display();
     }
 }
