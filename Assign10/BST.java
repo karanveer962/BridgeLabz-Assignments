@@ -58,7 +58,25 @@ public class BST<K extends Comparable<K>> {
         }
         return 1 + sizeTree(root.left) + sizeTree(root.right);
     }
+    public boolean search(K key) {
+        return searchTree(root, key);
+    }
 
+    private boolean searchTree(INode<K> root, K key) {
+        if (root == null) {
+            return false;
+        }
+
+        if (key.equals(root.key)) {
+            return true;
+        }
+
+        if (key.compareTo(root.key) < 0) {
+            return searchTree(root.left, key);
+        } else {
+            return searchTree(root.right, key);
+        }
+    }
     public static void main(String[] args) {
         BST<Integer> bst = new BST<>();
          bst.add(56);
@@ -79,7 +97,13 @@ public class BST<K extends Comparable<K>> {
 
          System.out.println("In-order Traversal:"); //to verify the arrangement
          bst.inOrderTraversal();
+         System.out.println();
+         
 
+         if(bst.search(63))
+         System.out.println("Node with key 63 found in the BST");
+         else
+         System.out.println("Node with key 63 not found in the BST");
 
     }
 }
