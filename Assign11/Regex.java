@@ -21,9 +21,9 @@ public class Regex {
         System.out.println("Enter Password of the Person: ");
         String password=sc.next();
 
-        Validator Password=new Validator("^(?=[A-Z]+)[a-zA-Z0-9]{8,}$");
+        Validator Password=new Validator("^(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$");
         if(!Password.Validate(password))
-        System.out.println("Error!!Password must be atleast 8 characters and contains atleast 1 Capital letter.");
+        System.out.println("Error!!Password must be atleast 8 characters and contains atleast 1 Capital letter, 1 numeric number.");
         
     }
 }
