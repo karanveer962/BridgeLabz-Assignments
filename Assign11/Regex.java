@@ -18,12 +18,13 @@ public class Regex {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
 
-        System.out.println("Enter First name of the Person: ");
-        String f_name=sc.next();
-        
-        Validator firstName=new Validator("^[A-Z][A-Za-z]{2,}$");
-        if(!firstName.Validate(f_name))
-        System.out.println("First name starts with Cap and has minimum 3 characters!!!");
+        System.out.println("Enter Last name of the Person: ");
+        String l_name=sc.next();
 
+        Validator lastName=new Validator("^[A-Z][A-Za-z]{2,}$");
+        if(!lastName.Validate(l_name))
+        System.out.println("Last name starts with Cap and has minimum 3 characters!!!");
+
+        
     }
 }
